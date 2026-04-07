@@ -1,22 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AI Food Assistant</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Food & Health Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
 </head>
 <body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    
+    <main class="app-container">
+        <div class="top-nav">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">🌞</button>
+            <button id="reset-btn" class="reset-btn" title="Clear Data">🗑️ Reset</button>
+            <button id="logout-btn" class="logout-btn">Logout</button>
+        </div>
+        <header class="app-header">
+            <h1>AI Food & Health Assistant</h1>
+            <p>Tell me your mood or food preferences, and I'll recommend the perfect dish for your well-being.</p>
+        </header>
 
-  <div class="container">
-    <h1>🤖 AI-Powered Food & Health Assistant</h1>
+        <div id="daily-reminder" class="daily-reminder"></div>
 
-    <input type="text" id="input" placeholder="Enter mood (tired, happy...)">
-    <button onclick="generate()">Get Suggestion</button>
+        <section class="input-section">
+            <div class="input-wrapper">
+                <input type="text" id="user-input" placeholder="e.g., 'Feeling stressed' or 'High protein lunch'" autocomplete="off">
+                <button id="voice-btn" class="voice-btn" title="Click to speak">🎤</button>
+            </div>
+            <div class="diet-select-wrapper">
+                <select id="diet-preference" class="diet-select">
+                    <option value="none">No Specific Diet Preference</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="high-protein">High-Protein</option>
+                    <option value="low-carb">Low-Carb</option>
+                </select>
+            </div>
+            <button id="generate-btn" class="primary-btn">
+                <span class="btn-text">Generate Suggestion</span>
+                <span class="loader" aria-hidden="true" style="display: none;"></span>
+            </button>
+        </section>
 
-    <div id="chat"></div>
-  </div>
+        <section id="recommendation-result" class="result-section hidden">
+            <div class="recommendation-card" id="rem-card">
+                <h2 id="dish-title">Your Personalized Meal Plan</h2>
+                <div class="metrics" id="dish-metrics">
+                    <span class="metric-badge">Score: <span id="metric-score">--</span>/100</span>
+                    <span class="metric-badge"><span id="metric-cals">--</span> kcal</span>
+                </div>
+                <div class="tags" id="dish-tags"></div>
+                
+                <div class="meal-plan-grid">
+                    <div class="meal-slot">
+                        <h4>Breakfast</h4>
+                        <p id="meal-breakfast"></p>
+                    </div>
+                    <div class="meal-slot">
+                        <h4>Lunch</h4>
+                        <p id="meal-lunch"></p>
+                    </div>
+                    <div class="meal-slot">
+                        <h4>Dinner</h4>
+                        <p id="meal-dinner"></p>
+                    </div>
+                </div>
 
-  <!-- Script at bottom (better loading) -->
-  <script src="script.js"></script>
+                <div class="health-benefits" style="margin-top: 1.5rem;">
+                    <h3>Health Benefits</h3>
+                    <p id="dish-benefits">Health benefits will be displayed here.</p>
+                </div>
+                
+                <button id="save-meal-btn" class="secondary-btn" style="margin-top: 1.2rem; width: 100%;">
+                    ⭐ Save This Plan
+                </button>
+            </div>
+        </section>
 
+        <section class="analytics-section">
+            <h3>Mood Analytics</h3>
+            <div id="mood-summary" class="mood-summary">
+                Generate at least one meal to see your mood summary!
+            </div>
+        </section>
+
+        <section class="history-section">
+            <h3>Recent History</h3>
+            <ul id="history-list" class="history-list">
+                <!-- Data populated via JS -->
+            </ul>
+        </section>
+
+        <section class="saved-section">
+            <h3>Saved Plans</h3>
+            <ul id="saved-list" class="saved-list">
+                <!-- Saved data from JS -->
+            </ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
