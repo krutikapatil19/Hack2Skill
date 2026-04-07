@@ -6,15 +6,30 @@
 </head>
 <body>
 
+<!-- 🔐 Security Check -->
+<script>
+  if (!localStorage.getItem("user")) {
+    alert("Please login first!");
+    window.location.href = "index.html";
+  }
+</script>
+
 <div class="container">
-  <h1>🤖 AI Food Assistant</h1>
+  <h1>🤖 AI-Powered Food & Health Assistant</h1>
 
   <input type="text" id="input" placeholder="Enter mood">
   <button onclick="generate()">Get Suggestion</button>
 
   <div id="chat"></div>
+
+  <!-- 🔓 Logout Button -->
+  <button onclick="logout()" style="margin-top:15px; background:#ff4d4d;">
+    Logout
+  </button>
 </div>
 
 <script src="script.js"></script>
+<script src="auth.js"></script>
+
 </body>
 </html>
