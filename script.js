@@ -418,6 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Check if already saved
             const alreadyExists = savedMeals.find(m => m.title === currentPlan.title);
             if (!alreadyExists) {
+                
                 savedMeals.unshift(currentPlan);
                 localStorage.setItem('aiFoodSaved', JSON.stringify(savedMeals));
                 renderSavedMeals();

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Food & Health</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    
+    <main class="login-container app-container">
+        <div class="top-nav" style="justify-content: flex-start; margin-bottom: 0;">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">🌞</button>
+        </div>
+        <div class="app-header">
+            <h1>Welcome Back</h1>
+            <p>Login to access your smart food assistant.</p>
+        </div>
+        <form id="login-form" class="input-section">
+            <div class="input-wrapper">
+                <input type="text" id="username" placeholder="Username (try 'admin')" required>
+            </div>
+            <div class="input-wrapper">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="primary-btn">
+                <span class="btn-text">Log In</span>
+            </button>
+        </form>
+    </main>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate successful authentication
+            localStorage.setItem('isAiFoodAssistantAuth', 'true');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
