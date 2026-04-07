@@ -2,6 +2,11 @@ function signup() {
   let user = document.getElementById("username").value;
   let pass = document.getElementById("password").value;
 
+  if (user === "" || pass === "") {
+    alert("Please fill all fields!");
+    return;
+  }
+
   localStorage.setItem("user", user);
   localStorage.setItem("pass", pass);
 
@@ -16,10 +21,21 @@ function login() {
   let storedUser = localStorage.getItem("user");
   let storedPass = localStorage.getItem("pass");
 
+  if (user === "" || pass === "") {
+    alert("Please fill all fields!");
+    return;
+  }
+
   if (user === storedUser && pass === storedPass) {
     alert("Login successful!");
     window.location.href = "dashboard.html";
   } else {
     alert("Invalid credentials!");
   }
+}
+
+// 🔓 Logout function (NEW)
+function logout() {
+  alert("Logged out successfully!");
+  window.location.href = "index.html";
 }
