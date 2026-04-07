@@ -1,41 +1,17 @@
-function signup() {
-  let user = document.getElementById("username").value;
-  let pass = document.getElementById("password").value;
+(function() {
+    const isAuthenticated = localStorage.getItem('isAiFoodAssistantAuth');
+    const path = window.location.pathname;
+    const isLoginPage = path.endsWith('login.html');
 
-  if (user === "" || pass === "") {
-    alert("Please fill all fields!");
-    return;
-  }
+    if (!isAuthenticated && !isLoginPage) {
+        window.location.href = 'login.html';
+    } else if (isAuthenticated && isLoginPage) {
+        window.location.href = 'index.html';
+    }
 
-  localStorage.setItem("user", user);
-  localStorage.setItem("pass", pass);
-
-  alert("Signup successful!");
-  window.location.href = "index.html";
-}
-
-function login() {
-  let user = document.getElementById("loginUser").value;
-  let pass = document.getElementById("loginPass").value;
-
-  let storedUser = localStorage.getItem("user");
-  let storedPass = localStorage.getItem("pass");
-
-  if (user === "" || pass === "") {
-    alert("Please fill all fields!");
-    return;
-  }
-
-  if (user === storedUser && pass === storedPass) {
-    alert("Login successful!");
-    window.location.href = "dashboard.html";
-  } else {
-    alert("Invalid credentials!");
-  }
-}
-
-// 🔓 Logout function (NEW)
-function logout() {
-  alert("Logged out successfully!");
-  window.location.href = "index.html";
-}
+    // Theme logic to prevent FOUC
+    const savedTheme = localStorage.getItem('aiFoodTheme');
+    if (savedTheme === 'light') {
+        document.documentElement.classList.add('light-mode');
+    }
+})();
